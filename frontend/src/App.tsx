@@ -1,5 +1,9 @@
+import AppRoutes from './AppRoutes.jsx';
+
 function App() {
-  return <h1>CodeHire</h1>
+  return (
+    <AppRoutes />
+  )
 }
 
 export default App
