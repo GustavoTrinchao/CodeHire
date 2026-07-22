@@ -26,13 +26,13 @@ function LoginPage() {
             </div>
             <div className="flex flex-col items-center">
               <Button type="submit" className="h-9 w-full bg-blue-600 hover:bg-blue-600">Sign in</Button>
-              <Link to="/forgot-password" className="text-blue-600 text-sm">Forgot password?</Link>
+              <Link to="/forgot-password" className="text-blue-600 text-sm pt-3">Forgot password?</Link>
             </div>
           </form>
         </div>
         <footer className="flex flex-col items-center gap-3">
-          <p>Don't have an account? <Link to="/register" className="text-blue-600 font-semibold">Get started</Link></p>
-          <Link to="/" className="font-semibold text-slate-400">← Back to homepage</Link>
+          <p className="text-slate-500">Don't have an account? <Link to="/register" className="text-blue-600 font-semibold">Get started</Link></p>
+          <Link to="/" className="text-slate-400">← Back to homepage</Link>
         </footer>
       </main>
     </div>
