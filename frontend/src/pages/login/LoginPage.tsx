@@ -1,15 +1,14 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Link } from "react-router-dom";
-import logo from "@/assets/logo.svg";
+import Logo from "@/components/Logo";
 
 function LoginPage() {
   return (
     <div>
       <main className="min-h-screen bg-blue flex flex-col gap-8 items-center justify-center bg-slate-50">
         <header className="flex items-center gap-3">
-          <img src={logo} alt="CodeHire logo" className="h-8 w-8" />
-          <h1 className="text-xl font-semibold">CodeHire</h1>
+          <Logo/>
         </header>
         <div className="flex flex-col gap-5 w-full max-w-sm bg-white rounded-xl shadow-lg p-6">
           <div>
@@ -26,7 +25,7 @@ function LoginPage() {
               <Input className="h-9" id="password" type="password" placeholder="••••••••"/>
             </div>
             <div className="flex flex-col items-center">
-              <Button type="submit" className="h-9 w-full bg-blue-600 hover:bg-blue-700">Sign in</Button>
+              <Button type="submit" className="h-9 w-full bg-blue-600 hover:bg-blue-600">Sign in</Button>
               <Link to="/forgot-password" className="text-blue-600 text-sm">Forgot password?</Link>
             </div>
           </form>
