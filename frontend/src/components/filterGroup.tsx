@@ -6,11 +6,7 @@ type FilterGroupProps = {
   onFilterChange: (filter: string) => void;
 };
 
-function FilterGroup({
-  filterActivated,
-  filters,
-  onFilterChange,
-}: FilterGroupProps) {
+function FilterGroup({filterActivated,filters,onFilterChange}: FilterGroupProps) {
   return (
     <div className="flex gap-1 rounded-lg bg-white p-1 w-fit border">
       {filters.map((filter) => (
