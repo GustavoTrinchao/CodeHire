@@ -114,9 +114,9 @@ function RecruiterInterviewsPage() {
               </TableHeader>
 
               <TableBody>
-                {interviews.map((interview) => (
-                  <TableRow className="h-15">
-                  <TableCell >{interview.title}</TableCell>
+                {interviews.filter((interview) => filter === "All" || interview.status === filter).map((interview) => (
+                  <TableRow className="h-15 border-slate-50">
+                  <TableCell className="w-[250px]">{interview.title}</TableCell>
                   <TableCell className="text-slate-400">{interview.questions} qs</TableCell>
                   <TableCell className="text-slate-400">{interview.duration}</TableCell>
                   <TableCell>
