@@ -8,10 +8,16 @@ import QuestionCard from "@/components/questionCard";
 import type { Question } from "@/types/question";
 
 function RecruiterQuestionBankPage() {
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState("ALL");
   function handleFilterChange(filter: string) {
     setFilter(filter);
   }
+  const filters = [
+    { label: "All", value: "ALL" },
+    { label: "Code", value: "CODE" },
+    { label: "Open Text", value: "OPEN_TEXT" },
+    { label: "MCQ", value: "MULTIPLE_CHOICE" },
+  ];
 
   const questions: Question[] = [
     {
@@ -49,7 +55,16 @@ function RecruiterQuestionBankPage() {
       type: "CODE",
       tags: ["System Design", "Hash Map", "Linked List"],
     },
+    {
+      id: 6,
+      title: "Generic question",
+      difficulty: "HARD",
+      type: "MULTIPLE_CHOICE",
+      tags: ["Complexity"],
+    },
   ];
+
+  let filteredQuestions:Question[] = questions.filter((question) => filter === "ALL" || question.type === filter)
   
   return (
     <div>
@@ -66,12 +81,12 @@ function RecruiterQuestionBankPage() {
           <SearchInput placeholder="Search questions..."/>
           <FilterGroup
             filterActivated={filter}
-            filters={["All", "Code", "Text", "MCQ"]}
+            filters={filters}
             onFilterChange={handleFilterChange}
           />
         </div>
         <div className="px-8 lg:px-[7vw] py-6 grid grid-cols-1 xl:grid-cols-2 gap-4">
-          {questions.map((question) => (
+          {filteredQuestions.map((question) => (
             <QuestionCard question={question}/>
           ))}
         </div>

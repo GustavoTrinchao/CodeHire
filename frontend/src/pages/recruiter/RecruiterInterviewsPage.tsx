@@ -9,11 +9,18 @@ import type { Interview } from "@/types/interview"
 import InterviewTable from "@/components/interviewTable";
 
 function RecruiterInterviewsPage() {
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState("ALL");
 
   function handleFilterChange(filter: string) {
     setFilter(filter);
   }
+
+  const filters = [
+    { label: "All", value: "ALL" },
+    { label: "Active", value: "ACTIVE" },
+    { label: "Draft", value: "DRAFT" },
+    { label: "Closed", value: "CLOSED" },
+  ];
 
   const interviews: Interview[] = [
     {
@@ -65,7 +72,7 @@ function RecruiterInterviewsPage() {
       createdAt: "28/07/2026",
     },
   ];
-  let filteredInterviews:Interview[] = interviews.filter((interview) => filter === "All" || interview.status === filter)
+  let filteredInterviews:Interview[] = interviews.filter((interview) => filter === "ALL" || interview.status === filter)
 
   return (
     <div>
@@ -82,7 +89,7 @@ function RecruiterInterviewsPage() {
           <SearchInput placeholder="Search interviews..."/>
           <FilterGroup
             filterActivated={filter}
-            filters={["All", "Active", "Draft", "Closed"]}
+            filters={filters}
             onFilterChange={handleFilterChange}
           />
         </div>

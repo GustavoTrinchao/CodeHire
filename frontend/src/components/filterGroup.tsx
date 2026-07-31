@@ -1,8 +1,13 @@
 import FilterButton from "./filterButton";
 
+type Filter = {
+  label: string;
+  value: string;
+};
+
 type FilterGroupProps = {
   filterActivated: string;
-  filters: string[];
+  filters: Filter[];
   onFilterChange: (filter: string) => void;
 };
 
@@ -11,11 +16,11 @@ function FilterGroup({filterActivated,filters,onFilterChange}: FilterGroupProps)
     <div className="flex gap-1 rounded-lg bg-white p-1 w-fit border">
       {filters.map((filter) => (
         <FilterButton
-          key={filter}
-          active={filter === filterActivated}
-          onClick={() => onFilterChange(filter)}
+          key={filter.value}
+          active={filter.value === filterActivated}
+          onClick={() => onFilterChange(filter.value)}
         >
-          {filter}
+          {filter.label}
         </FilterButton>
       ))}
     </div>
