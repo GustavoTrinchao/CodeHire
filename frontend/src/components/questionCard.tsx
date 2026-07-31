@@ -43,7 +43,7 @@ function QuestionCard({question}:QuestionCardProps){
             <Button className="bg-transparent hover:bg-slate-100 text-slate-600"><Copy/></Button>
           </div>
         </div>
-        <h2>{question.title}</h2>
+        <h2 className='font-semibold'>{question.title}</h2>
         <div className="flex flex-wrap gap-1">
           {question.tags.map((tag) => (
             <span className="rounded-full inline-flex justify-center items-center w-fit h-5 px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700">{tag}</span>

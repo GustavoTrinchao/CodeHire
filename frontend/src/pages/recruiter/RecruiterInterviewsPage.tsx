@@ -77,7 +77,7 @@ function RecruiterInterviewsPage() {
   return (
     <div>
       <Sidebar role='recruiter'/>
-      <main className="ml-56 bg-slate-50 min-h-screen">
+      <main className="ml-56 bg-slate-50 min-h-screen ">
         <div className="flex justify-between py-8 px-8 lg:px-[7vw]">
           <div>
             <h1 className="text-xl font-semibold">Interviews</h1>

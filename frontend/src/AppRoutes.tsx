@@ -7,6 +7,7 @@ import RecruiterInterviewsPage from "./pages/recruiter/RecruiterInterviewsPage.t
 import RecruiterQuestionBankPage from "./pages/recruiter/RecruiterQuestionBankPage.tsx";
 import RecruiterSettingsPage from "./pages/recruiter/RecruiterSettings.tsx";
 import RecruiterTemplatesPage from "./pages/recruiter/RecruiterTemplatesPage.tsx";
+import CreateQuestionPage from "./pages/recruiter/CreateQuestionPage.tsx";
 
 const AppRoutes = () => (
   <BrowserRouter>
@@ -17,6 +18,7 @@ const AppRoutes = () => (
       <Route path="/recruiter/dashboard" element={<RecruiterDashboardPage />} />
       <Route path="/recruiter/interviews" element={<RecruiterInterviewsPage />} />
       <Route path="/recruiter/question-bank" element={<RecruiterQuestionBankPage />} />
+      <Route path="/recruiter/question-bank/create" element={<CreateQuestionPage />} />
       <Route path="/recruiter/templates" element={<RecruiterTemplatesPage />} />
       <Route path="/recruiter/settings" element={<RecruiterSettingsPage />} />
     </Routes>
