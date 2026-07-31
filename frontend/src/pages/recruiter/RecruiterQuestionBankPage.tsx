@@ -6,8 +6,11 @@ import SearchInput from "@/components/searchInput";
 import { useState } from "react";
 import QuestionCard from "@/components/questionCard";
 import type { Question } from "@/types/question";
+import { useNavigate } from "react-router-dom";
 
 function RecruiterQuestionBankPage() {
+  const navigate = useNavigate();
+
   const [filter, setFilter] = useState("ALL");
   function handleFilterChange(filter: string) {
     setFilter(filter);
@@ -75,7 +78,7 @@ function RecruiterQuestionBankPage() {
             <h1 className="text-xl font-semibold">Question Bank</h1>
             <p className="text-slate-500">8 questions in your library</p>
           </div>
-          <Button className="bg-blue-600 hover:bg-blue-700"><Plus/>New Question</Button>
+          <Button onClick={() => navigate("/recruiter/question-bank/create")} className="bg-blue-600 hover:bg-blue-700"><Plus/>New Question</Button>
         </div>
         <div className="flex gap-4 px-8 lg:px-[7vw]">
           <SearchInput placeholder="Search questions..."/>

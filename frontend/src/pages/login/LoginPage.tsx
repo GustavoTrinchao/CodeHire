@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "@/components/logo";
 
 function LoginPage() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <main className="min-h-screen bg-blue flex flex-col gap-8 items-center justify-center bg-slate-50">
@@ -25,7 +27,7 @@ function LoginPage() {
               <Input className="h-9" id="password" type="password" placeholder="••••••••"/>
             </div>
             <div className="flex flex-col items-center">
-              <Button type="submit" className="h-9 w-full bg-blue-600 hover:bg-blue-600"><Link to="/recruiter/dashboard">Sign in</Link></Button>
+              <Button onClick={() => navigate("/recruiter/dashboard")} type="submit" className="h-9 w-full bg-blue-600 hover:bg-blue-700">Sign in</Button>
               <Link to="/forgot-password" className="text-blue-600 text-sm pt-3">Forgot password?</Link>
             </div>
           </form>
