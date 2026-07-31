@@ -1,4 +1,4 @@
-export type InterviewStatus = "Active" | "Draft" | "Closed";
+export type InterviewStatus = "ACTIVE" | "DRAFT" | "CLOSED";
  
 export interface Interview {
   id: number;

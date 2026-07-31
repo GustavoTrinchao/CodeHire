@@ -1,14 +1,31 @@
-import { Copy, SquarePen, Terminal } from 'lucide-react';
+import { Copy, SquarePen, Terminal, TextAlignStart, SquareCheckBig } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import type { Question, QuestionDifficulty, QuestionType } from '@/types/question';
+import { formatEnum } from "@/utils/format";
 
-function QuestionCard(){
+type QuestionCardProps = {
+  question: Question
+}
+
+function QuestionCard({question}:QuestionCardProps){
 
     
-    type InterviewStatus = "Active" | "Draft" | "Closed";
-    const statusStyles: Record<InterviewStatus, string> = {
-        Active: "bg-green-100 text-green-700",
-        Draft: "bg-yellow-100 text-yellow-700",
-        Closed: "bg-red-100 text-red-700",
+    const difficultyStyles: Record<QuestionDifficulty, string> = {
+        EASY: "bg-green-100 text-green-700",
+        MEDIUM: "bg-yellow-100 text-yellow-700",
+        HARD: "bg-red-100 text-red-700",
+    };
+
+    const TypesStyles: Record<QuestionType, string> = {
+        CODE: "bg-blue-100 text-blue-700",
+        OPEN_TEXT: "bg-purple-100 text-purple-700",
+        MULTIPLE_CHOICE: "bg-pink-100 text-pink-700",
+    };
+
+    const questionIcons = {
+      CODE: <Terminal className="text-slate-500 h-4 w-4" />,
+      OPEN_TEXT: <TextAlignStart className="text-slate-500 h-4 w-4" />,
+      MULTIPLE_CHOICE: <SquareCheckBig className="text-slate-500 h-4 w-4" />,
     };
 
     return(
@@ -16,20 +33,21 @@ function QuestionCard(){
         <div className="flex justify-between">
           <div className="flex flex-wrap items-center gap-2">
             <div className="flex justify-center items-center h-7 w-7 bg-slate-100 rounded-md">
-              <Terminal className="text-slate-500 h-4 w-4"/>
+              {questionIcons[question.type]}
             </div>
-            <span className={`rounded-full inline-flex justify-center items-center w-fit h-5 px-3 py-1 text-xs font-medium ${statusStyles["Active"]}`}>Code</span>
-            <span className={`rounded-full inline-flex justify-center items-center w-fit h-5 px-3 py-1 text-xs font-medium ${statusStyles["Closed"]}`}>medium</span>
+            <span className={`rounded-full inline-flex justify-center items-center w-fit h-5 px-3 py-1 text-xs font-medium ${TypesStyles[question.type]}`}>{formatEnum(question.type)}</span>
+            <span className={`rounded-full inline-flex justify-center items-center w-fit h-5 px-3 py-1 text-xs font-medium ${difficultyStyles[question.difficulty]}`}>{question.difficulty.toLowerCase()}</span>
           </div>
           <div className="flex opacity-0 group-hover:opacity-100 duration-200">
             <Button className="bg-transparent hover:bg-slate-100 text-slate-600"><SquarePen/></Button>
             <Button className="bg-transparent hover:bg-slate-100 text-slate-600"><Copy/></Button>
           </div>
         </div>
-        <h2>Reverse a Linked List</h2>
+        <h2>{question.title}</h2>
         <div className="flex flex-wrap gap-1">
-          <span className={`rounded-full inline-flex justify-center items-center w-fit h-5 px-3 py-1 text-xs font-medium ${statusStyles["Draft"]}`}>Data Sctrucs</span>
-          <span className={`rounded-full inline-flex justify-center items-center w-fit h-5 px-3 py-1 text-xs font-medium ${statusStyles["Active"]}`}>Algorithms</span>
+          {question.tags.map((tag) => (
+            <span className="rounded-full inline-flex justify-center items-center w-fit h-5 px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700">{tag}</span>
+          ))}
         </div>       
       </div>
     )

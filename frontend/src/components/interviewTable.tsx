@@ -2,15 +2,16 @@ import type { Interview, InterviewStatus} from "@/types/interview"
 import {TableRow, TableBody, TableCell} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Eye, SquarePen, Copy} from 'lucide-react';
+import { formatEnum } from "@/utils/format";
 
 type InterviewTableProps = {
   interviews: Interview[]
 }
 
 const statusStyles: Record<InterviewStatus, string> = {
-  Active: "bg-green-100 text-green-700",
-  Draft: "bg-yellow-100 text-yellow-700",
-  Closed: "bg-red-100 text-red-700",
+  ACTIVE: "bg-green-100 text-green-700",
+  DRAFT: "bg-yellow-100 text-yellow-700",
+  CLOSED: "bg-red-100 text-red-700",
 };
 
 function InterviewTable({interviews}:InterviewTableProps){
@@ -23,7 +24,7 @@ function InterviewTable({interviews}:InterviewTableProps){
           <TableCell className="text-slate-400">{interview.duration}</TableCell>
           <TableCell>
             <span className={`rounded-full inline-flex justify-center items-center w-14 h-5 px-3 py-1 text-xs font-medium ${statusStyles[interview.status]}`}>
-              {interview.status}
+              {formatEnum(interview.status)}
             </span>
           </TableCell>
           <TableCell className="text-slate-400">{interview.createdAt}</TableCell>

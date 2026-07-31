@@ -21,7 +21,7 @@ function RecruiterInterviewsPage() {
       title: "Entrevista Backend Java",
       questions: 5,
       duration: "60 min",
-      status: "Active",
+      status: "ACTIVE",
       createdAt: "29/07/2026",
     },
     {
@@ -29,7 +29,7 @@ function RecruiterInterviewsPage() {
       title: "Entrevista Backend python",
       questions: 5,
       duration: "60 min",
-      status: "Active",
+      status: "ACTIVE",
       createdAt: "29/07/2026",
     },
     {
@@ -37,7 +37,7 @@ function RecruiterInterviewsPage() {
       title: "Entrevista Backend Java",
       questions: 5,
       duration: "60 min",
-      status: "Active",
+      status: "ACTIVE",
       createdAt: "29/07/2026",
     },
     {
@@ -45,7 +45,7 @@ function RecruiterInterviewsPage() {
       title: "Entrevista Backend Java",
       questions: 5,
       duration: "60 min",
-      status: "Closed",
+      status: "CLOSED",
       createdAt: "29/07/2026",
     },
     {
@@ -53,7 +53,7 @@ function RecruiterInterviewsPage() {
       title: "Entrevista Backend Java",
       questions: 5,
       duration: "60 min",
-      status: "Active",
+      status: "ACTIVE",
       createdAt: "29/07/2026",
     },
     {
@@ -61,7 +61,7 @@ function RecruiterInterviewsPage() {
       title: "Desafio React",
       questions: 8,
       duration: "90 min",
-      status: "Draft",
+      status: "DRAFT",
       createdAt: "28/07/2026",
     },
   ];

@@ -1,16 +1,55 @@
 import Sidebar from "@/components/sidebar";
 import FilterGroup from "@/components/filterGroup";
-import { Plus, Copy, SquarePen } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import SearchInput from "@/components/searchInput";
 import { useState } from "react";
 import QuestionCard from "@/components/questionCard";
+import type { Question } from "@/types/question";
 
 function RecruiterQuestionBankPage() {
   const [filter, setFilter] = useState("All");
   function handleFilterChange(filter: string) {
     setFilter(filter);
   }
+
+  const questions: Question[] = [
+    {
+      id: 1,
+      title: "Reverse a Linked List",
+      difficulty: "EASY",
+      type: "CODE",
+      tags: ["Data Structures", "Linked List"],
+    },
+    {
+      id: 2,
+      title: "Find the First Non-Repeating Character",
+      difficulty: "MEDIUM",
+      type: "CODE",
+      tags: ["Strings", "Hash Map"],
+    },
+    {
+      id: 3,
+      title: "Explain the SOLID Principles",
+      difficulty: "MEDIUM",
+      type: "OPEN_TEXT",
+      tags: ["OOP", "Software Design"],
+    },
+    {
+      id: 4,
+      title: "What is the Time Complexity of Binary Search?",
+      difficulty: "EASY",
+      type: "MULTIPLE_CHOICE",
+      tags: ["Algorithms", "Complexity"],
+    },
+    {
+      id: 5,
+      title: "Design an LRU Cache",
+      difficulty: "HARD",
+      type: "CODE",
+      tags: ["System Design", "Hash Map", "Linked List"],
+    },
+  ];
   
   return (
     <div>
@@ -32,17 +71,9 @@ function RecruiterQuestionBankPage() {
           />
         </div>
         <div className="px-8 lg:px-[7vw] py-6 grid grid-cols-1 xl:grid-cols-2 gap-4">
-          <QuestionCard/>
-          <QuestionCard/>
-          <QuestionCard/>
-          <QuestionCard/>
-          <QuestionCard/>
-          <QuestionCard/>
-          <QuestionCard/>
-          <QuestionCard/>
-          <QuestionCard/>
-          <QuestionCard/>
-          <QuestionCard/>
+          {questions.map((question) => (
+            <QuestionCard question={question}/>
+          ))}
         </div>
       </main>
     </div>
