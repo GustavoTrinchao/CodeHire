@@ -1,7 +1,9 @@
 import Sidebar from "@/components/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Terminal, TextAlignStart, SquareCheckBig, ChevronRight } from 'lucide-react';
+import { Textarea } from "@/components/ui/textarea";
+import {  Terminal, TextAlignStart, SquareCheckBig, ChevronRight } from 'lucide-react';
+import type { LucideIcon } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -10,8 +12,35 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import type { QuestionType } from "@/types/question";
+import { CodeFields, MultipleChoiceFields } from "@/components/questionForm";
 
 function CreateQuestionPage() {
+  const [questionType, setQuestionType] = useState<QuestionType>("CODE");
+  
+  const questionTypes: {
+    value: QuestionType;
+    label: string;
+    icon: LucideIcon;
+  }[]  = [
+    {
+      value: "CODE",
+      label: "Code",
+      icon: Terminal,
+    },
+    {
+      value: "OPEN_TEXT",
+      label: "Open Text",
+      icon: TextAlignStart,
+    },
+    {
+      value: "MULTIPLE_CHOICE",
+      label: "Multiple Choice",
+      icon: SquareCheckBig,
+    },
+  ];
+
   return (
     <div>
       <Sidebar role='recruiter'/>
@@ -29,19 +58,41 @@ function CreateQuestionPage() {
             <div className="flex flex-col gap-1 ">
               <label className="text-slate-800" htmlFor="type">Question Type</label>
               <div className="grid grid-cols-3 gap-2">
-                <Button className="h-10 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200"><Terminal/>Code</Button>
-                <Button className="h-10 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200"><TextAlignStart/><span className="text-center break-words">Open Text</span></Button>
-                <Button className="h-10 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200"><SquareCheckBig/><span className="text-center break-words">Multiple Choice</span></Button>
+                {questionTypes.map((type) => {
+                  const Icon = type.icon;
+
+                  return (
+                    <Button
+                      key={type.value}
+                      onClick={() => setQuestionType(type.value)}
+                      className={`lg:h-10 sm:h-16 border whitespace-normal ${
+                        questionType === type.value
+                          ? "border-blue-600 bg-blue-50 text-blue-600 hover:bg-blue-50"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+                      }`}
+                    >
+                      <Icon className="h-4 w-4 shrink-0" />
+                      <span className="text-center">{type.label}</span>
+                    </Button>
+                  );
+                })}
               </div>
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-slate-800" htmlFor="title">Question Title</label>
-              <Input></Input>
+              <Input placeholder="e.g. Implement a debounce function in javascript"></Input>
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-slate-800" htmlFor="description">Description(optional)</label>
-              <Input className="h-18"></Input>
+              <label className="text-slate-800" htmlFor="description">Description <span className="text-slate-400">(optional)</span></label>
+              <Textarea className="h-18 overflow-y-auto" placeholder="Contstraints, examples, or additional context..."></Textarea>
             </div>
+            {questionType === "CODE" && (
+              <CodeFields />
+            )}
+
+            {questionType === "MULTIPLE_CHOICE" && (
+              <MultipleChoiceFields />
+            )}
           </div>
           <div className="flex flex-[1] flex-col gap-4">
             <div className="bg-white shadow-sm hover:shadow-md border rounded-lg px-5 py-8">
@@ -61,10 +112,10 @@ function CreateQuestionPage() {
                   </Select>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-slate-800" htmlFor="role">Difficulty</label>
+                  <label className="text-slate-800" htmlFor="role">Language</label>
                   <Select>
                     <SelectTrigger className="w-full h-9">
-                      <SelectValue placeholder="Select a difficulty" />
+                      <SelectValue placeholder="Select a language" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Python">Python</SelectItem>
