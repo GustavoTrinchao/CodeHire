@@ -1,7 +1,7 @@
 package io.github.gustavotrinchao.codehire.enums;
 
 public enum ERole {
-    CANDIDATE,
-    RECRUITER
+    ROLE_CANDIDATE,
+    RODE_RECRUITER
 }
 

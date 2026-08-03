@@ -25,12 +25,32 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-                );
+            .csrf(csrf -> csrf.disable())
+            .cors(cors -> {})
+            .authorizeHttpRequests(auth -> auth
+
+                // public
+                .requestMatchers(
+                    "/auth/login",
+                    "/auth/register"
+                ).permitAll()
+
+
+                // only recruiters
+                .requestMatchers(
+                    "/recruiter/**"
+                ).hasRole("ROLE_RECRUITER")
+
+                // only candidates
+                .requestMatchers(
+                    "/candidate/**"
+                ).hasRole("ROLE_CANDIDATE")
+
+                // todo resto precisa estar logado
+                .anyRequest().authenticated()
+            );
+
 
         return http.build();
     }

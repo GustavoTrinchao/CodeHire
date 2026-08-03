@@ -20,16 +20,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
-    public ResponseEntity<UserResponseDto> create(
-            @Valid @RequestBody CreateUserDto dto) {
-
-        UserResponseDto user = userService.create(dto);
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(user);
-    }
-
     @GetMapping
     public ResponseEntity<List<UserDto>> findAllUsers() {
         List<UserDto> users = userService.findAllUsers();
