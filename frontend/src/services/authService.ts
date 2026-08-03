@@ -14,12 +14,26 @@ interface LoginResponse {
     role: string;
 }
 
+interface RegisterData {
+    email: string;
+    password: string;
+    name: string;
+    company: string;
+    role: string;
+}
+
 export async function login(data: LoginRequest) {
 
     const response = await api.post<LoginResponse>(
         "/auth/login",
         data
     );
+
+    return response.data;
+}
+
+export async function register(data: RegisterData) {
+    const response = await api.post("/auth/register", data);
 
     return response.data;
 }

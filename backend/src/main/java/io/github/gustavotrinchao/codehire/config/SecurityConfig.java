@@ -33,21 +33,21 @@ public class SecurityConfig {
                 // public
                 .requestMatchers(
                     "/auth/login",
-                    "/auth/register"
+                    "/auth/register",
+                    "/users"
                 ).permitAll()
 
 
                 // only recruiters
                 .requestMatchers(
                     "/recruiter/**"
-                ).hasRole("ROLE_RECRUITER")
+                ).hasRole("RECRUITER")
 
                 // only candidates
                 .requestMatchers(
                     "/candidate/**"
-                ).hasRole("ROLE_CANDIDATE")
+                ).hasRole("CANDIDATE")
 
-                // todo resto precisa estar logado
                 .anyRequest().authenticated()
             );
 
