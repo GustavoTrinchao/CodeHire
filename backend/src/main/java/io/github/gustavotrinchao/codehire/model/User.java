@@ -1,0 +1,50 @@
+package io.github.gustavotrinchao.codehire.model;
+
+import io.github.gustavotrinchao.codehire.enums.ERole;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Data
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @NotBlank
+    @Email
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @NotBlank
+    @Size(min = 3, max = 100)
+    private String name;
+
+    @Size(min = 3, max = 100)
+    private String company;
+
+    @NotBlank
+    @Size(min = 6, max = 128, message = "A senha deve ter pelo menos 6 caracteres")
+    private String password;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ERole role;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
+}
+
