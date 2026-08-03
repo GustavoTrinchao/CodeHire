@@ -1,4 +1,4 @@
-package io.github.gustavotrinchao.codehire.dto;
+package io.github.gustavotrinchao.codehire.dto.request;
 
 import io.github.gustavotrinchao.codehire.enums.ERole;
 import jakarta.validation.constraints.*;

@@ -1,8 +1,9 @@
 package io.github.gustavotrinchao.codehire.mapper;
 
-import io.github.gustavotrinchao.codehire.dto.CreateUserDto;
-import io.github.gustavotrinchao.codehire.dto.UserDto;
-import io.github.gustavotrinchao.codehire.dto.UserResponseDto;
+import io.github.gustavotrinchao.codehire.dto.request.CreateUserDto;
+import io.github.gustavotrinchao.codehire.dto.response.LoginResponseDto;
+import io.github.gustavotrinchao.codehire.dto.response.UserDto;
+import io.github.gustavotrinchao.codehire.dto.response.UserResponseDto;
 import io.github.gustavotrinchao.codehire.model.User;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,16 @@ public class UserMapper {
             user.getRole(),
             user.getCreatedAt(),
             user.getUpdatedAt()
+        );
+    }
+    public LoginResponseDto toResponse(User user, String token){
+        return new LoginResponseDto(
+            token,
+            user.getId(),
+            user.getEmail(),
+            user.getName(),
+            user.getCompany(),
+            user.getRole()
         );
     }
 }
