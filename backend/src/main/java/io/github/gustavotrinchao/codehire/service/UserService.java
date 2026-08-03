@@ -29,7 +29,7 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenService jwtTokenService;
 
-    public UserResponseDto create(CreateUserDto dto) {
+    public void create(CreateUserDto dto) {
         if (userRepository.existsByEmail(dto.email())) {
             throw new EmailAlreadyExistsException(
                     "Email already registered."
@@ -37,9 +37,7 @@ public class UserService {
         }
         User user = userMapper.toEntity(dto);
         user.setPassword(passwordEncoder.encode(dto.password()));
-        User savedUser = userRepository.save(user);
-
-        return userMapper.toResponse(savedUser);
+        userRepository.save(user);
     }
 
     public List<UserDto> findAllUsers() {

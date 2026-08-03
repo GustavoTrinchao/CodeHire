@@ -3,7 +3,6 @@ package io.github.gustavotrinchao.codehire.controller;
 import io.github.gustavotrinchao.codehire.dto.request.CreateUserDto;
 import io.github.gustavotrinchao.codehire.dto.request.LoginRequestDto;
 import io.github.gustavotrinchao.codehire.dto.response.LoginResponseDto;
-import io.github.gustavotrinchao.codehire.dto.response.UserResponseDto;
 import io.github.gustavotrinchao.codehire.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +28,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponseDto> create(
+    public ResponseEntity<Void> create(
             @Valid @RequestBody CreateUserDto dto) {
 
-        UserResponseDto user = userService.create(dto);
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(user);
+        userService.create(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
