@@ -18,7 +18,7 @@ function HomePage() {
         </div>
       </header>
       <main className="pt-24 flex flex-col min-h-screen items-center justify-center gap-10">
-        <h1 className="text-5xl lg:text-6xl font-bold max-w-2xl lg:max-w-4xl text-center">Technical interviewssssssssss, {" "}<span className="text-blue-600">done right.</span></h1>
+        <h1 className="text-5xl lg:text-6xl font-bold max-w-2xl lg:max-w-4xl text-center">Technical interviews, {" "}<span className="text-blue-600">done right.</span></h1>
         <p className="text-xl max-w-3xl text-center text-slate-600 leading-8">CodeHire gives your team a professional platform to create, send, and evaluate technical interviews — with real code challenges, automatic scoring, and clear candidate insights.</p>
         <Button onClick={() => navigate("/register")} className="text-xl bg-blue-600 hover:bg-blue-700 h-13 px-7">Start for free →</Button>
       </main>
