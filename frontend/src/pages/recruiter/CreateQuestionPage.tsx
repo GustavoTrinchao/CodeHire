@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Link } from "react-router-dom";
-import { use, useState } from "react";
+import { useState } from "react";
 import { CodeFields, MultipleChoiceFields } from "@/components/questionForm";
 import type { QuestionType, QuestionDifficulty, QuestionOptionRequest, CreateQuestionRequest } from "@/types/question";
 import { createQuestion } from "@/services/questionService";
@@ -103,6 +103,7 @@ function CreateQuestionPage() {
 
   function resetQuestion() {
     setQuestion(initialQuestion);
+    setTagsInput("");
   }
 
   const questionTypes: {
