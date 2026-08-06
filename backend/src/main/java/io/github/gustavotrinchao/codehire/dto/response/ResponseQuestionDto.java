@@ -1,5 +1,6 @@
 package io.github.gustavotrinchao.codehire.dto.response;
 
+import io.github.gustavotrinchao.codehire.enums.EQuestionDifficulty;
 import io.github.gustavotrinchao.codehire.enums.EQuestionType;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public record ResponseQuestionDto(
     String title,
     String description,
     EQuestionType type,
+    EQuestionDifficulty difficulty,
     List<String> tags,
     List<ResponseQuestionOptionDto> options
 

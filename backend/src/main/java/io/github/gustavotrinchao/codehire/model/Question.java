@@ -1,21 +1,17 @@
 package io.github.gustavotrinchao.codehire.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.github.gustavotrinchao.codehire.enums.EQuestionDifficulty;
 import io.github.gustavotrinchao.codehire.enums.EQuestionType;
-import io.github.gustavotrinchao.codehire.enums.ERole;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,7 +34,11 @@ public class Question{
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private EQuestionType questionType;
+    private EQuestionType type;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private EQuestionDifficulty difficulty;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -50,6 +50,7 @@ public class Question{
     private String starterCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "created_by", nullable = false)
     private User createdBy;
 

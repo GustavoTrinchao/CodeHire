@@ -1,5 +1,6 @@
 package io.github.gustavotrinchao.codehire.dto.request;
 
+import io.github.gustavotrinchao.codehire.enums.EQuestionDifficulty;
 import io.github.gustavotrinchao.codehire.enums.EQuestionType;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
@@ -20,6 +21,9 @@ public record CreateQuestionDto(
 
     @NotNull(message = "Question type is required")
     EQuestionType type,
+
+    @NotNull(message = "Question difficulty is required")
+    EQuestionDifficulty difficulty,
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")

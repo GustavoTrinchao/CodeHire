@@ -19,9 +19,9 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
     private final QuestionMapper questionMapper;
 
-    public void create(CreateQuestionDto dto, User user) {
+    public UUID create(CreateQuestionDto dto, User user) {
         Question question = questionMapper.toEntity(dto, user);
-        questionRepository.save(question);
+        return questionRepository.save(question).getId();
     }
 
     public Question findById(UUID id) {
@@ -34,5 +34,10 @@ public class QuestionService {
             .stream()
             .map(questionMapper::toDto)
             .toList();
+    }
+
+    public void delete(UUID id) {
+        Question question = findById(id);
+        questionRepository.delete(question);
     }
 }

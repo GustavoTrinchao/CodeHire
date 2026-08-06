@@ -17,7 +17,8 @@ public class QuestionMapper {
     public Question toEntity(CreateQuestionDto dto, User user) {
         Question question = new Question();
 
-        question.setQuestionType(dto.type());
+        question.setType(dto.type());
+        question.setDifficulty(dto.difficulty());
         question.setDescription(dto.description());
         question.setTitle(dto.title());
         question.setTags(dto.tags());
@@ -51,7 +52,8 @@ public class QuestionMapper {
                 question.getId(),
                 question.getTitle(),
                 question.getDescription(),
-                question.getQuestionType(),
+                question.getType(),
+                question.getDifficulty(),
                 question.getTags(),
                 options
         );

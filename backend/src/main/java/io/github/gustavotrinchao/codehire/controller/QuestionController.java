@@ -22,22 +22,28 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
-    @PostMapping()
-    public ResponseEntity<Void> create(
+    @PostMapping
+    public ResponseEntity<UUID> create(
             @Valid @RequestBody CreateQuestionDto dto, @AuthenticationPrincipal User user) {
         System.out.println(user);
-        questionService.create(dto, user);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        UUID questionId = questionService.create(dto, user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(questionId);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ResponseQuestionDto>> findByUser(@AuthenticationPrincipal User user) {
+        List<ResponseQuestionDto> questions = questionService.listAllbyUser(user);
+        return ResponseEntity.ok(questions);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {
+        questionService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Question> findById(@PathVariable UUID id) {
         Question question = questionService.findById(id);
         return ResponseEntity.ok(question);
-    }
-    @GetMapping
-    public ResponseEntity<List<ResponseQuestionDto>> findByUser(@AuthenticationPrincipal User user) {
-        List<ResponseQuestionDto> questions = questionService.listAllbyUser(user);
-        return ResponseEntity.ok(questions);
     }
 }
