@@ -4,7 +4,6 @@ import io.github.gustavotrinchao.codehire.dto.request.CreateUserDto;
 import io.github.gustavotrinchao.codehire.dto.request.LoginRequestDto;
 import io.github.gustavotrinchao.codehire.dto.response.LoginResponseDto;
 import io.github.gustavotrinchao.codehire.dto.response.UserDto;
-import io.github.gustavotrinchao.codehire.dto.response.UserResponseDto;
 import io.github.gustavotrinchao.codehire.exception.EmailAlreadyExistsException;
 import io.github.gustavotrinchao.codehire.exception.InvalidCredentialsException;
 import io.github.gustavotrinchao.codehire.mapper.UserMapper;

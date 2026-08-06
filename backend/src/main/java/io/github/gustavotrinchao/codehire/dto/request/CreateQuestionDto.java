@@ -29,5 +29,7 @@ public record CreateQuestionDto(
     @Column(columnDefinition = "jsonb")
     List<String> tags,
 
-    List<CreateQuestionOptionDto> options
+    List<CreateQuestionOptionDto> options,
+
+    String starterCode
 ) {}

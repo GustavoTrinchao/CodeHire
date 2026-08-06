@@ -16,7 +16,7 @@ public record CreateUserDto(
     @Size(min = 3, max = 100, message = "Name must be between 3 and 100 characters")
     String name,
 
-    @Size(min = 3, max = 100, message = "Company must be between 3 and 100 characters")
+    @Size(max = 100, message = "Company must have less than 100 characters")
     String company,
 
     @NotNull(message = "User role is required")

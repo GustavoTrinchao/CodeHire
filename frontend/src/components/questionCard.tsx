@@ -1,10 +1,10 @@
 import { Copy, SquarePen, Terminal, TextAlignStart, SquareCheckBig } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import type { Question, QuestionDifficulty, QuestionType } from '@/types/question';
+import type { QuestionDto, QuestionDifficulty, QuestionType } from '@/types/question';
 import { formatEnum } from "@/utils/format";
 
 type QuestionCardProps = {
-  question: Question
+  question: QuestionDto
 }
 
 function QuestionCard({question}:QuestionCardProps){

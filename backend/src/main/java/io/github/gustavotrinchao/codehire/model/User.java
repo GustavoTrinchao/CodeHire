@@ -35,7 +35,7 @@ public class User implements UserDetails {
     @Size(min = 3, max = 100)
     private String name;
 
-    @Size(min = 3, max = 100)
+    @Size(max = 100)
     private String company;
 
     @NotBlank

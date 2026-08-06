@@ -1,7 +1,7 @@
 export type InterviewStatus = "ACTIVE" | "DRAFT" | "CLOSED";
  
 export interface Interview {
-  id: number;
+  id: string;
   title: string;
   questions: number;
   duration: string;

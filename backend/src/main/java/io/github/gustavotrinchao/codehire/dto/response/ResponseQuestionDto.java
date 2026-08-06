@@ -10,10 +10,8 @@ public record ResponseQuestionDto(
 
     UUID id,
     String title,
-    String description,
     EQuestionType type,
     EQuestionDifficulty difficulty,
-    List<String> tags,
-    List<ResponseQuestionOptionDto> options
+    List<String> tags
 
 ) {}

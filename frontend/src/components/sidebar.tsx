@@ -3,12 +3,12 @@ import SidebarButton from "@/components/sidebarButton"
 import Logo from "@/components/logo";
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
+import { getUser } from "@/services/authService";
 
-type SidebarProps = {
-  role: string;
-};
 
-function Sidebar({ role }:SidebarProps) {
+function Sidebar() {
+  const user = getUser()
+  const role = user?.role.toLocaleLowerCase()
   return (
     <div>
     <aside className="flex flex-col w-56 h-screen border-r border-slate-200 fixed top-0 left-0 bg-white">
@@ -35,8 +35,8 @@ function Sidebar({ role }:SidebarProps) {
           <div className='flex items-center gap-2'>
             <div className="h-10 w-10 rounded-full bg-gray-300" />
             <div className='flex flex-col items-start'> 
-              <p className='text-black text-xs'>John Doe</p>
-              <p className='text-slate-400 text-xs'>TechCorp Inc.</p>
+              <p className='text-black text-xs'>{user?.name}</p>
+              <p className='text-slate-400 text-xs'>{user? user.company:""}</p>
             </div>
           </div>
           <Link to="/"><LogOut className='text-slate-400 hover:text-black h-5 w-5'/></Link>

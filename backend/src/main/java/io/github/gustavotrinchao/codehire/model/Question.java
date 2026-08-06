@@ -29,9 +29,6 @@ public class Question{
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Size(min = 3, max = 100)
-    private String company;
-
     @NotNull
     @Enumerated(EnumType.STRING)
     private EQuestionType type;

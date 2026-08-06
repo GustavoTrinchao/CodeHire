@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "@/components/logo";
 import { useState } from "react";
-import { login } from "@/services/authService";
+import { login, saveToken, saveUser } from "@/services/authService";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -20,10 +20,10 @@ function LoginPage() {
             password
         });
 
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data));
+        saveToken(data.token);
+        saveUser(data.user);
 
-        navigate(`/${data.role.toLowerCase()}/dashboard`);
+        navigate(`/${data.user.role.toLowerCase()}/dashboard`);
 
     } catch (error) {
         setError("Email ou senha inválidos");

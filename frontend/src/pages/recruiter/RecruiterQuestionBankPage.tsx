@@ -3,10 +3,11 @@ import FilterGroup from "@/components/filterGroup";
 import { Plus } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import SearchInput from "@/components/searchInput";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuestionCard from "@/components/questionCard";
-import type { Question } from "@/types/question";
+import type { QuestionDto } from "@/types/question";
 import { useNavigate } from "react-router-dom";
+import { getQuestions } from "@/services/questionService";
 
 function RecruiterQuestionBankPage() {
   const navigate = useNavigate();
@@ -22,56 +23,23 @@ function RecruiterQuestionBankPage() {
     { label: "MCQ", value: "MULTIPLE_CHOICE" },
   ];
 
-  const questions: Question[] = [
-    {
-      id: 1,
-      title: "Reverse a Linked List",
-      difficulty: "EASY",
-      type: "CODE",
-      tags: ["Data Structures", "Linked List"],
-    },
-    {
-      id: 2,
-      title: "Find the First Non-Repeating Character",
-      difficulty: "MEDIUM",
-      type: "CODE",
-      tags: ["Strings", "Hash Map"],
-    },
-    {
-      id: 3,
-      title: "Explain the SOLID Principles",
-      difficulty: "MEDIUM",
-      type: "OPEN_TEXT",
-      tags: ["OOP", "Software Design"],
-    },
-    {
-      id: 4,
-      title: "What is the Time Complexity of Binary Search?",
-      difficulty: "EASY",
-      type: "MULTIPLE_CHOICE",
-      tags: ["Algorithms", "Complexity"],
-    },
-    {
-      id: 5,
-      title: "Design an LRU Cache",
-      difficulty: "HARD",
-      type: "CODE",
-      tags: ["System Design", "Hash Map", "Linked List"],
-    },
-    {
-      id: 6,
-      title: "Generic question",
-      difficulty: "HARD",
-      type: "MULTIPLE_CHOICE",
-      tags: ["Complexity"],
-    },
-  ];
+  const [questions, setQuestions] = useState<QuestionDto[]>([]);
 
-  let filteredQuestions:Question[] = questions.filter((question) => filter === "ALL" || question.type === filter)
+  let filteredQuestions:QuestionDto[] = questions.filter((question) => filter === "ALL" || question.type === filter)
+
+  useEffect(() => {
+    async function loadQuestions() {
+      const data = await getQuestions();
+
+      setQuestions(data);
+    }
+
+    loadQuestions();
+  }, []);
   
   return (
     <div>
-      <Sidebar role='recruiter'/>
+      <Sidebar/>
       <main className="ml-56 bg-slate-50 min-h-screen">
         <div className="flex justify-between py-8 px-8 lg:px-[7vw]">
           <div>

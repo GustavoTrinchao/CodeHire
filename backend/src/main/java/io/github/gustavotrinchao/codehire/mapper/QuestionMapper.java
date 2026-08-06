@@ -51,11 +51,9 @@ public class QuestionMapper {
         return new ResponseQuestionDto(
                 question.getId(),
                 question.getTitle(),
-                question.getDescription(),
                 question.getType(),
                 question.getDifficulty(),
-                question.getTags(),
-                options
+                question.getTags()
         );
     }
     public ResponseQuestionOptionDto toDto(QuestionOption option) {

@@ -64,8 +64,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         .getPayload()
                         .getSubject();
 
-                System.out.println("JWT USER: " + email);
-
                 UserDetails userDetails =
                         authorizationService.loadUserByUsername(email);
 
@@ -83,7 +81,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
             } catch (Exception e) {
-                System.out.println("JWT inválido: " + e.getMessage());
+                System.out.println("JWT invalid: " + e.getMessage());
             }
         }
 
