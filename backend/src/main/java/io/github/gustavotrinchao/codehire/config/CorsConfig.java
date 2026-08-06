@@ -23,7 +23,13 @@ public class CorsConfig {
                 Arrays.asList(allowedOrigins.split(","))
         );
         configuration.setAllowedMethods(
-                List.of("GET", "POST", "PUT", "DELETE")
+                List.of(
+                        "GET",
+                        "POST",
+                        "PUT",
+                        "DELETE",
+                        "OPTIONS"
+                )
         );
         configuration.setAllowedHeaders(
                 List.of("*")

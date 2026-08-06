@@ -37,6 +37,10 @@ public class SecurityConfig {
                     "/users"
                 ).permitAll()
 
+                .requestMatchers(
+                        org.springframework.http.HttpMethod.OPTIONS,
+                        "/**"
+                ).permitAll()
 
                 // only recruiters
                 .requestMatchers(
