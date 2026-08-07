@@ -45,6 +45,7 @@ function CreateQuestionPage() {
   const [question, setQuestion] = useState(initialQuestion);
   const [saveAndAddAnother, setSaveAndAddAnother] = useState(false);
   const [tagsInput, setTagsInput] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   
   function handleChange(
@@ -71,8 +72,20 @@ function CreateQuestionPage() {
     }));
   }
 
+  function hasEmptyOptions() {
+    return question.options.some(
+      option => option.content.trim() === ""
+    );
+  }
+
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+
+    setError("");
+    if (!question.title || (question.type === "MULTIPLE_CHOICE" &&  hasEmptyOptions())) {
+      setError("Please fill in all required fields.");
+      return;
+    }
 
     console.log(question);
     const payload = {
@@ -169,7 +182,7 @@ function CreateQuestionPage() {
               </div>
               <div className="flex flex-col gap-1">
                 <label className="text-slate-800" htmlFor="title">Question Title</label>
-                <Input
+                <Input className={`${error && !question.title ? "border-red-500" : ""}`}
                   value={question.title}
                   onChange={(e) =>
                     handleChange("title", e.target.value)
@@ -199,6 +212,7 @@ function CreateQuestionPage() {
                 <MultipleChoiceFields
                   options={question.options}
                   onChange={updateOptions}
+                  showErrors={error !== ""}
                 />
               )}
             </div>
@@ -241,7 +255,7 @@ function CreateQuestionPage() {
                     </Select>
                   </div>
                   <div className="flex flex-col gap-1">
-                      <label className="text-slate-800" htmlFor="tags">Tags</label>
+                      <label className="text-slate-800" htmlFor="tags">Tags <span className="text-slate-400">(optional)</span></label>
                       <Input
                         value={tagsInput}
                         onChange={(e) => {
@@ -260,12 +274,13 @@ function CreateQuestionPage() {
                         placeholder="Algorithms, Arrays"
                       />
                   </div>
-                  <div className="flex flex-col gap-1">
-                      <label className="text-slate-800" htmlFor="time">Time Limit</label>
-                      <Input placeholder="e.g. 15 minutes"></Input>
-                  </div>
                 </div>
               </div>
+              {error && (
+                  <p className="text-sm text-red-500">
+                      {error}
+                  </p>
+              )}
               <Button className="w-full bg-blue-600 hover:bg-blue-700" type="submit">Save Question</Button>
               <Button className="w-full bg-white text-slate-800 shadow-sm border hover:bg-slate-50" type="submit" onClick={() => setSaveAndAddAnother(true)}>Save && Add Another</Button>
             </div>

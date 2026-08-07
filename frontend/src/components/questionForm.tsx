@@ -24,11 +24,13 @@ function CodeFields({ starterCode, onChange }: CodeFieldsProps) {
 interface MultipleChoiceProps {
   options: QuestionOptionRequest[];
   onChange: (options: QuestionOptionRequest[]) => void;
+  showErrors: boolean;
 }
 
 function MultipleChoiceFields({
   options,
-  onChange
+  onChange,
+  showErrors
 }: MultipleChoiceProps) {
 
   return (
@@ -60,6 +62,11 @@ function MultipleChoiceFields({
             />
 
             <Input
+              className={
+                showErrors && !option.content.trim()
+                  ? "border-red-500 focus-visible:ring-red-500"
+                  : ""
+              }
               value={option.content}
               onChange={(e) =>
                 onChange(
