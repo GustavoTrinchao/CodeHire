@@ -46,4 +46,11 @@ public class QuestionController {
         Question question = questionService.findById(id);
         return ResponseEntity.ok(question);
     }
+
+    @PutMapping()
+    public ResponseEntity<Void> UpdateQuestion(
+            @Valid @RequestBody Question question) {
+        questionService.update(question);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }

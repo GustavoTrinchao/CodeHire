@@ -40,4 +40,8 @@ public class QuestionService {
         Question question = findById(id);
         questionRepository.delete(question);
     }
+
+    public void update(Question question) {
+        questionRepository.save(question);
+    }
 }

@@ -10,7 +10,7 @@ export interface QuestionDto {
 };
 
 export interface Question {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   difficulty: QuestionDifficulty;
@@ -23,20 +23,5 @@ export interface Question {
 export interface QuestionOption{
   content: string;
   correct: boolean;
-  id: string;
-}
-
-export interface CreateQuestionRequest {
-  title: string;
-  description: string;
-  difficulty: QuestionDifficulty;
-  type: QuestionType;
-  tags: string[];
-  starterCode: string;
-  options: QuestionOptionRequest[];
-}
-
-export interface QuestionOptionRequest{
-  content: string;
-  correct: boolean;
+  id?: string;
 }

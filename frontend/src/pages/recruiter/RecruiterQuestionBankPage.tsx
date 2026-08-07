@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import QuestionCard from "@/components/questionCard";
 import type { QuestionDto } from "@/types/question";
 import { useNavigate } from "react-router-dom";
-import { getQuestions } from "@/services/questionService";
+import { getQuestions, deleteQuestion } from "@/services/questionService";
 
 function RecruiterQuestionBankPage() {
   const navigate = useNavigate();
@@ -26,6 +26,13 @@ function RecruiterQuestionBankPage() {
   const [questions, setQuestions] = useState<QuestionDto[]>([]);
 
   let filteredQuestions:QuestionDto[] = questions.filter((question) => filter === "ALL" || question.type === filter)
+
+  const handleDelete = async (id: string) => {
+    await deleteQuestion(id);
+    setQuestions(prev =>
+      prev.filter(question => question.id !== id)
+    )
+  }
 
   useEffect(() => {
     async function loadQuestions() {
@@ -58,7 +65,7 @@ function RecruiterQuestionBankPage() {
         </div>
         <div className="px-8 lg:px-[7vw] py-6 grid grid-cols-1 xl:grid-cols-2 gap-4">
           {filteredQuestions.map((question) => (
-            <QuestionCard question={question}/>
+            <QuestionCard question={question} onDelete={handleDelete} key={question.id}/>
           ))}
         </div>
       </main>

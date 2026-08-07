@@ -23,6 +23,7 @@ public class QuestionMapper {
         question.setTitle(dto.title());
         question.setTags(dto.tags());
         question.setCreatedBy(user);
+        question.setStarterCode(dto.starterCode());
         if (dto.options() != null) {
             List<QuestionOption> options = dto.options()
                     .stream()
